@@ -9,23 +9,24 @@ import {
   Image,
   LinkBox,
   LinkOverlay,
-  Box,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   useMediaQuery,
-  useDisclosure,
   useColorMode,
 } from '@chakra-ui/react'
+
 import { HamburgerIcon, SunIcon, MoonIcon } from '@chakra-ui/icons'
 import '../../App.css'
 import { ModalAuth } from '../Auth/Modal'
+import { CartDrawer } from '../Cart/CartDrawer'
 
 const Header = () => {
   const [menu] = useMediaQuery('(min-width: 460px)')
 
   const { colorMode, toggleColorMode } = useColorMode()
+
   return (
     <Flex
       direction="row"
@@ -42,11 +43,12 @@ const Header = () => {
             Kida Shop
           </Heading>
           <Link fontSize="xl" href="/" color="pink">
-            Popular!
+            Home
           </Link>
 
           <Spacer></Spacer>
           <Flex fontSize="md" gap="3">
+            <CartDrawer />
             <IconButton
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}

@@ -4,6 +4,7 @@ import './App.css'
 import { Home } from './pages/Home/Home'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
 import { Profile } from './pages/Profile/Profile'
+import { Checkout } from './pages/Checkout/Checkout'
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
               </ProtectedRoute>
             }
           />

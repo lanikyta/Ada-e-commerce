@@ -1,6 +1,7 @@
 import {
   Button,
   Heading,
+  HStack,
   Image,
   Text,
   useToast,
@@ -8,7 +9,8 @@ import {
 } from '@chakra-ui/react'
 import { FaCartPlus } from 'react-icons/fa'
 
-const ProductCard = () => {
+const ProductCard = ({ item }) => {
+  const { image, description, price, title } = item.attributes
   const toast = useToast()
   const handleClickAdd = () => {
     toast({
@@ -21,13 +23,16 @@ const ProductCard = () => {
   }
   return (
     <VStack>
-      <Image src="https://collectors-land.com/wp-content/uploads/2021/01/719IK-W1LNL._AC_SL1400_.jpg" />
-      <Heading>Nombre del art xD</Heading>
-      <Text>Aqui va breve descripcion del art</Text>
-      <Button>Details</Button>
-      <Button onClick={handleClickAdd}>
-        <FaCartPlus />
-      </Button>
+      <Image src={image.data.attributes.url} w="300px" />
+      <Heading>{title}</Heading>
+      <Text>{description}</Text>
+      <Text>${price}</Text>
+      <HStack>
+        <Button>Details</Button>
+        <Button onClick={handleClickAdd}>
+          <FaCartPlus />
+        </Button>
+      </HStack>
     </VStack>
   )
 }

@@ -9,6 +9,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { object, string } from 'yup'
+import { useGet } from '../../Hooks/useGet'
 const schema = object({
   email: string().email('Must be a valid email').required(),
   password: string().min(8, 'At least 8 characthers').required(),
@@ -21,9 +22,7 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) })
 
-  const onSubmit = async (data) => {
-    // const {data} = await shopApi.post('/auth/local')
-  }
+  const onSubmit = async (data) => {}
   console.log(errors)
   return (
     <Stack as="form" onSubmit={handleSubmit(onSubmit)}>
