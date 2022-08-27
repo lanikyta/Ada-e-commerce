@@ -5,12 +5,11 @@ const Footer = () => {
     <Center
       className="footer"
       h="3em"
-      mt="3"
-      bgGradient="linear(to-l, red.900, pink.900)"
+      bgGradient="linear(to-l, blue.300, green.100)"
     >
-      <Text color="blue.400">
+      <Text color="red.400">
         Hecho por{' '}
-        <Link color="pink.200" href="https://www.linkedin.com/feed/">
+        <Link color="pink.500" href="https://www.linkedin.com/feed/">
           Aylen ♥
         </Link>
       </Text>

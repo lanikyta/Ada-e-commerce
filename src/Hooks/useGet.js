@@ -12,7 +12,10 @@ const useGet = () => {
         .get('/products?populate=image')
         .then((res) => setData(res.data))
         .then(setIsLoading(false))
-        .catch((err) => setError(err))
+        .catch((err) => {
+          setError(err)
+          setIsLoading(false)
+        })
     }
     getData()
   }, [])

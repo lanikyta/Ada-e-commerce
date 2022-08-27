@@ -1,13 +1,13 @@
-import { VStack } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { Footer } from './Footer'
 import { Header } from './Header'
 const ShopLayout = ({ children }) => {
   return (
-    <VStack minH="100vh">
+    <Box minH="100vh" w="100vw" pb="10" boxSizing="border-box">
       <Header />
       <main>{children}</main>
       <Footer />
-    </VStack>
+    </Box>
   )
 }
 

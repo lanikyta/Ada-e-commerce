@@ -8,9 +8,9 @@ import {
 } from '@chakra-ui/react'
 const Filter = () => {
   return (
-    <Stack as="form" direction="row" alignItems="flex-end">
+    <Stack as="form" direction="row" alignItems="flex-end" w="50%" mx="auto">
       <FormControl>
-        <Input id="name" placeholder="Search" />
+        <Input id="search" type="search" placeholder="Search" />
         <FormErrorMessage></FormErrorMessage>
       </FormControl>
       <FormControl>

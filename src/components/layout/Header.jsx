@@ -30,9 +30,9 @@ const Header = () => {
   return (
     <Flex
       direction="row"
-      w="100vw"
+      px="1"
       align="center"
-      bgGradient="linear(to-r, red.900, pink.900)"
+      bgGradient="linear(to-r, blue.300, green.100)"
       className="navbar"
     >
       {menu ? (

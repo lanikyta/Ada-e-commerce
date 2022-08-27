@@ -4,8 +4,8 @@ import { ProductGrid } from '../../components/Product/ProductGrid'
 
 const Home = () => {
   return (
-    <Box>
-      <Heading>Our products</Heading>
+    <Box w="95vw" mx="auto" my="10" textAlign="center">
+      <Heading m="2">Our products</Heading>
       <Filter />
       <ProductGrid />
     </Box>

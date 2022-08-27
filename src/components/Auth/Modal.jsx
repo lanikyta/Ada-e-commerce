@@ -30,26 +30,19 @@ const ModalAuth = () => {
           <ModalBody>
             <Tabs>
               <TabList>
-                <Tab>Register</Tab>
                 <Tab>Log in</Tab>
+                <Tab>Register</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <Register />
+                  <Login />
                 </TabPanel>
                 <TabPanel>
-                  <Login />
+                  <Register />
                 </TabPanel>
               </TabPanels>
             </Tabs>
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
