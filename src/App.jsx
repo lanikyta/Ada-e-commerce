@@ -5,27 +5,17 @@ import { Home } from './pages/Home/Home'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
 import { Profile } from './pages/Profile/Profile'
 import { Checkout } from './pages/Checkout/Checkout'
+import { NotFound } from './pages/NotFound/NotFound'
 function App() {
   return (
     <ShopLayout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/checkout"
-          element={
-            <ProtectedRoute>
-              <Checkout />
-            </ProtectedRoute>
-          }
-        />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </ShopLayout>
   )

@@ -1,10 +1,12 @@
-import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Navigate, Outlet } from 'react-router-dom'
 
-const ProtectedRoute = ({ user, children }) => {
+const ProtectedRoute = ({}) => {
+  const { user } = useSelector((state) => state.auth)
   if (!user) {
     return <Navigate to="/" replace />
   }
 
-  return children
+  return <Outlet />
 }
 export { ProtectedRoute }

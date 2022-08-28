@@ -3,7 +3,7 @@ import { useGet } from '../../Hooks/useGet'
 import { ProductCard } from './ProductCard'
 const ProductGrid = () => {
   const { data, isLoading, error } = useGet()
-  console.log(data, isLoading, error)
+  // console.log(data, isLoading, error)
   if (isLoading) {
     return <Spinner color="red.500" size="xl" />
   }

@@ -3,7 +3,6 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
@@ -15,7 +14,6 @@ import {
   TabPanel,
 } from '@chakra-ui/react'
 import { Login } from './Login'
-import { Register } from './Register'
 
 const ModalAuth = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -25,7 +23,7 @@ const ModalAuth = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Log In!</ModalHeader>
+          <ModalHeader>Authentication</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Tabs>
@@ -35,10 +33,10 @@ const ModalAuth = () => {
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <Login />
+                  <Login onClose={onClose} />
                 </TabPanel>
                 <TabPanel>
-                  <Register />
+                  <Login onClose={onClose} createAcc />
                 </TabPanel>
               </TabPanels>
             </Tabs>

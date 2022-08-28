@@ -7,22 +7,14 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { FaCartPlus } from 'react-icons/fa'
+
+import { CartAddButton } from '../Cart/CartAddButton'
 
 const ProductCard = ({ item }) => {
   const {
     attributes: { image, description, price, title },
   } = item
-  const toast = useToast()
-  const handleClickAdd = () => {
-    toast({
-      title: 'Item added',
-      description: "We've added correctly the item to your cart.",
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    })
-  }
+
   return (
     <VStack boxShadow="md" p="2" my="2">
       <Image src={image.data?.attributes.url} w="300px" />
@@ -31,9 +23,7 @@ const ProductCard = ({ item }) => {
       <Text>${price}</Text>
       <HStack>
         <Button>Details</Button>
-        <Button onClick={handleClickAdd}>
-          <FaCartPlus />
-        </Button>
+        <CartAddButton item={item} />
       </HStack>
     </VStack>
   )

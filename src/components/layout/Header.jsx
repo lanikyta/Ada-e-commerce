@@ -1,3 +1,5 @@
+import { Link as RouterLink } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import logocarrito from '../../assets/logocarrito.png'
 import {
   Heading,
@@ -6,6 +8,7 @@ import {
   Flex,
   Link,
   Button,
+  ButtonGroup,
   Image,
   LinkBox,
   LinkOverlay,
@@ -21,12 +24,17 @@ import { HamburgerIcon, SunIcon, MoonIcon } from '@chakra-ui/icons'
 import '../../App.css'
 import { ModalAuth } from '../Auth/Modal'
 import { CartDrawer } from '../Cart/CartDrawer'
+import { FaRegUser } from 'react-icons/fa'
+import { logout } from '../../Redux/Features/Auth/AuthSlice'
 
 const Header = () => {
   const [menu] = useMediaQuery('(min-width: 460px)')
 
   const { colorMode, toggleColorMode } = useColorMode()
 
+  const dispatch = useDispatch()
+
+  const { user } = useSelector((state) => state.auth)
   return (
     <Flex
       direction="row"
@@ -42,10 +50,9 @@ const Header = () => {
           <Heading p="2" m="1" fontSize="2xl" color="pink.700">
             Kida Shop
           </Heading>
-          <Link fontSize="xl" href="/" color="pink">
+          <Link as={RouterLink} fontSize="xl" to="/" color="pink">
             Home
           </Link>
-
           <Spacer></Spacer>
           <Flex fontSize="md" gap="3">
             <CartDrawer />
@@ -53,10 +60,23 @@ const Header = () => {
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
             />
-            <ModalAuth />
-            <Button color="gray.700" bgColor="whiteAlpha.500" m="1" size="sm">
-              Sign Up
-            </Button>
+            {user ? (
+              <ButtonGroup>
+                <Button
+                  as={RouterLink}
+                  leftIcon={<FaRegUser />}
+                  to="/profile"
+                  colorScheme="teal"
+                >
+                  Profile
+                </Button>
+                <Button colorScheme="red" onClick={() => dispatch(logout())}>
+                  Sign Out
+                </Button>
+              </ButtonGroup>
+            ) : (
+              <ModalAuth />
+            )}
           </Flex>
         </>
       ) : (

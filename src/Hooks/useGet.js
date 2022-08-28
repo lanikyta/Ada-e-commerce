@@ -7,8 +7,8 @@ const useGet = () => {
   const [error, setError] = useState()
 
   useEffect(() => {
-    const getData = async () => {
-      await shopApi
+    const getData = () => {
+      shopApi
         .get('/products?populate=image')
         .then((res) => setData(res.data))
         .then(setIsLoading(false))
