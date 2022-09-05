@@ -1,37 +1,81 @@
-import { useEffect, useState } from 'react'
+import { useToast } from '@chakra-ui/react'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../Redux/Features/Auth/AuthSlice'
+import { clearCart } from '../Redux/Features/Cart/CartSlice'
 import shopApi from '../services/api'
 
-const usePost = (data, createAcc) => {
-  const [isLoading, setIsLoading] = useState(false)
+const usePost = () => {
   const [error, setError] = useState()
+  const [response, setResponse] = useState()
+  const dispatch = useDispatch()
+  const toast = useToast()
 
-  useEffect(() => {
-    const postData = () => {
-      shopApi
-        .post(
-          `/auth/local${createAcc ? '/register' : ''}`,
-          createAcc
-            ? {
-                username: data.username,
-                email: data.email,
-                password: data.password,
-              }
-            : {
-                identifier: data.email,
-                password: data.password,
-              }
-        )
-        .then((res) => console.log(res))
-        .then(setIsLoading(false))
-        .catch((err) => {
-          setError(err)
-          setIsLoading(false)
+  const postUser = (data, createAcc) => {
+    shopApi
+      .post(
+        `/auth/local${createAcc ? '/register' : ''}`,
+        createAcc
+          ? {
+              username: data.username,
+              email: data.email,
+              password: data.password,
+            }
+          : {
+              identifier: data.email,
+              password: data.password,
+            }
+      )
+      .then((res) => {
+        setResponse(res.data)
+        dispatch(login(res.data))
+      })
+      .catch((err) => {
+        setError(err)
+      })
+  }
+  const { jwt, user } = useSelector((state) => state.auth)
+  const postOrder = (cart) => {
+    shopApi
+      .post(
+        `/orders`,
+        {
+          data: {
+            Item: cart,
+            user: user.id,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+      .then((res) => {
+        setResponse(res.data)
+        toast({
+          title: 'Your order was cherged!',
+          description: `You have made a purchase! Order number: ${res.data.data.id}`,
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
         })
-    }
-    postData()
-  }, [])
 
-  return { error }
+        dispatch(clearCart())
+      })
+      .catch((err) => {
+        setError(err)
+        toast({
+          title: `error `,
+          description: 'error',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+      })
+  }
+
+  return { response, error, postUser, postOrder }
 }
 
 export { usePost }

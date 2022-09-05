@@ -6,11 +6,15 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
 import { Profile } from './pages/Profile/Profile'
 import { Checkout } from './pages/Checkout/Checkout'
 import { NotFound } from './pages/NotFound/NotFound'
+import { ProductCardDetails } from './pages/Details/ProductCardDetails'
+import { Store } from './pages/Store/Store'
 function App() {
   return (
     <ShopLayout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Store />}></Route>
+        <Route path="/products/:id" element={<ProductCardDetails />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/checkout" element={<Checkout />} />

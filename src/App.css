@@ -1,10 +1,8 @@
 .navbar {
-  box-shadow: 0px 10px 20px rgb(144, 220, 209);
-  position: relative;
+  box-shadow: 0px 11px 9px -6px rgb(144, 220, 209);
 }
 .footer {
   position: absolute;
   bottom: 0%;
-  width: 100%;
-  box-shadow: 0px -10px 20px rgb(144, 220, 209);
+  box-shadow: 0px -11px 9px -6px rgb(144, 220, 209);
 }

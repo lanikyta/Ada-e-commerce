@@ -8,6 +8,7 @@ import {
   InputGroup,
   InputRightElement,
   Stack,
+  useToast,
 } from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { useForm } from 'react-hook-form'
@@ -36,7 +37,7 @@ const Login = ({ onClose, createAcc }) => {
   const [showPassword, setShowPassword] = useState(false)
   const idR = 'R'
   const dispatch = useDispatch()
-
+  const toast = useToast()
   const onSubmit = (data) => {
     shopApi
       .post(
@@ -55,10 +56,24 @@ const Login = ({ onClose, createAcc }) => {
       .then((res) => {
         dispatch(login(res.data))
         onClose()
+        toast({
+          title: `Welcome ${res.data.user.username}`,
+          description: 'You have successfully logged in',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
       })
 
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
+        toast({
+          title: 'An error has ocurred',
+          description:
+            "We couldn't start your session. Please verify your email address and password and check again.",
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
       })
   }
 
@@ -80,7 +95,11 @@ const Login = ({ onClose, createAcc }) => {
       )}
       <FormControl isInvalid={errors.email}>
         <FormLabel htmlFor={`email${createAcc ? idR : ''}`}>Email</FormLabel>
-        <Input id={`email${createAcc ? idR : ''}`} {...register('email')} />
+        <Input
+          id={`email${createAcc ? idR : ''}`}
+          autoComplete="true"
+          {...register('email')}
+        />
         <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={errors.password}>
@@ -90,6 +109,7 @@ const Login = ({ onClose, createAcc }) => {
         <InputGroup>
           <Input
             id={`password${createAcc ? idR : ''}`}
+            autoComplete="true"
             type={showPassword ? 'text' : 'password'}
             {...register('password')}
           />

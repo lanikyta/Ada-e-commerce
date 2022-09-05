@@ -7,7 +7,7 @@ import {
 
 const NotFound = () => {
   return (
-    <Alert status="error">
+    <Alert w="60%" mx="auto" my="10" status="error">
       <AlertIcon />
       <AlertTitle>Error 404</AlertTitle>
       <AlertDescription>Page not found.</AlertDescription>
