@@ -20,7 +20,7 @@ const Carrousel = () => {
   return (
     <Box w={['80%', null, null, '40em', '40em']} mx="auto" my="10">
       <Slider {...settings}>
-        {data.data.map((elem) => (
+        {data?.data.map((elem) => (
           <Image
             w="100"
             src={elem.attributes.image.data.attributes.url}

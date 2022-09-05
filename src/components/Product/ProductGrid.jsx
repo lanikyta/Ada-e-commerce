@@ -50,7 +50,7 @@ const ProductGrid = () => {
         wrap="wrap"
         mx="auto"
       >
-        {data.data.map((item) => (
+        {data?.data.map((item) => (
           <ProductCard key={item.id} item={item} />
         ))}
       </Flex>
@@ -67,7 +67,7 @@ const ProductGrid = () => {
           icon={<ArrowRightIcon />}
           colorScheme="cyan"
           variant="outline"
-          isDisabled={page === data.meta.pagination.pageCount}
+          isDisabled={page === data?.meta.pagination.pageCount}
           onClick={() => handlePage('+')}
         />
       </ButtonGroup>

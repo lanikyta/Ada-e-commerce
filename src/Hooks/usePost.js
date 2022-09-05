@@ -66,8 +66,8 @@ const usePost = () => {
       .catch((err) => {
         setError(err)
         toast({
-          title: `error `,
-          description: 'error',
+          title: `Error `,
+          description: 'An error has ocurred, plis try again',
           status: 'error',
           duration: 3000,
           isClosable: true,
