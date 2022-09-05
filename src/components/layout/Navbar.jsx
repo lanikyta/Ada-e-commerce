@@ -162,6 +162,12 @@ const Navbar = () => {
             Store
           </Link>
           <Spacer></Spacer>
+          <IconButton
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            onClick={toggleColorMode}
+            colorScheme="teal"
+            variant="ghost"
+          />
           <CartDrawer />
         </Flex>
       )}
